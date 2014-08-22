@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package desafios;
+package Exercicio1;
 
 /**
  *
@@ -18,7 +18,7 @@ import java.util.Scanner;
         
       public EstruturaDados(int max)      // método construtor
       {
-      n = new String[max];               // cria o vetor ...
+      n = new String[max+1];               // cria o vetor ...
       nElems = 0;                        // inicialmente sem itens ...
       }
       
