@@ -66,9 +66,9 @@ class VetorOrdenado
       nElems++;                      // incrementa a variavel de controle de tamanho
       }  // finaliza o método de inserção
  //--------------------------------------------------------------
-//Método de remoção!!! ....
+//Método de remoção, utilizando busca binária.
 //--------------------------------------------------------------  
-   public int delete(String value) //método delete utilizando busca binária
+   public int delete(String value)
       {
       int lowerBound = 0;
       int upperBound = nElems-1;
@@ -77,17 +77,12 @@ class VetorOrdenado
       while(true)
          {
          curIn = (lowerBound + upperBound) / 2;
-         if(a[curIn].equals(value)){
-             for (int i =curIn; a[i].equals(value);i++){ //move o elemento encontrado e seus possíveis sucessores
-                for(int k=i; k<nElems; k++) // move os elementos uma posição pra tras 
-                a[k] = a[k+1];
-                nElems--;}
-             for (int i =curIn-1; a[i].equals(value);i--){ //move os possíveis antecessores do número encontrado
-                for(int k=i; k<nElems; k++) // move os elementos uma posição pra tras 
-                a[k] = a[k+1];
-                nElems--;}
-             return curIn;
-             }
+         if(a[curIn].equals(value)){ //ao encontrar o nome digitado faça:
+             for(int k=curIn; k<nElems; k++) // move os elementos uma posição pra tras
+                 a[k] = a[k+1];
+             nElems--; // decrementa o tamanho
+             return curIn;   
+         }
          else if(lowerBound > upperBound)
             return nElems;             // não pude encontra-lo
          else                          // divide o range
@@ -122,29 +117,34 @@ class AppOrdenada
       VetorOrdenado arr;                  // criar referência para a estrutura de dados
       arr = new VetorOrdenado(maxSize);   // instancia a estrutura de dados
 
-      arr.insert(77);                // insere 10 itens
-      arr.insert(99);
-      arr.insert(44);
-      arr.insert(55);
-      arr.insert(22);
-      arr.insert(88);
-      arr.insert(11);
-      arr.insert(00);
-      arr.insert(66);
-      arr.insert(33);
+      arr.insert("Lucas");                // insere 10 itens
+      arr.insert("Vanessa");
+      arr.insert("Dionizio");
+      arr.insert("Alexandre");
+      arr.insert("Luiz");
+      arr.insert("Mel");
+      arr.insert("Vitor");
+      arr.insert("IFSP");
+      arr.insert("ADS");
+      arr.insert("Tiao Carrero");
 
-      String searchKey = "t";            // buscar pela letra t no vetor
-      if( arr.find(searchKey) != arr.size() )
-         System.out.println("Encontrei o item " + searchKey);
-      else
-         System.out.println("Não encontrei o item " + searchKey);
+      String searchKey = "L";            // buscar pelos nomes que começam com a letra L no vetor
+      if( arr.find(searchKey) == arr.size() )
+         System.out.println("Não há no vetor nome que começa com a letra " + searchKey);
+     
 
-      arr.display();                 // mostra o item
+      arr.display();                 // mostra os itens da estrutura
 
-      arr.delete(00);                // deleta 3 itens
-      arr.delete(55);
-      arr.delete(99);
+      if( arr.delete("Tiao Carrero") == arr.size() )  // deleta 3 itens
+         System.out.println("Não há esse nome no vetor.");
+      
+      if( arr.delete("ADS") == arr.size() )
+      System.out.println("Não há esse nome no vetor.");
+      
+       if( arr.delete("Vitor") == arr.size() )  
+      System.out.println("Não há esse nome no vetor.");
 
-      arr.display();                 // mostra os itens da estrutura de novo
+       arr.display(); // mostra os itens da estrutura de novo
+                       
       }  // finaliza o método main()
    }  // finaliza a classe AppOrde
