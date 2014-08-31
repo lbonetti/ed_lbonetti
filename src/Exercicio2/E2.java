@@ -38,8 +38,7 @@ class VetorOrdenado
              for (int i =curIn-1; a[i].charAt(0)==searchKey.charAt(0);i--){
                  System.out.println("O nome " + a[i] + " começa com " + searchKey.charAt(0));}
          return curIn;
-         }
-            
+         }  
          else if(lowerBound > upperBound)
             return nElems;             // não pude encontra-lo
          else                          // divide o range
@@ -135,14 +134,15 @@ class AppOrdenada
 
       arr.display();                 // mostra os itens da estrutura
 
-      if( arr.delete("Tiao Carrero") == arr.size() )  // deleta 3 itens
+      if( arr.delete("ADS") == arr.size() )  // deleta 3 itens
          System.out.println("Não há esse nome no vetor.");
       
-      if( arr.delete("ADS") == arr.size() )
+      if( arr.delete("Lucas") == arr.size() )
       System.out.println("Não há esse nome no vetor.");
       
-       if( arr.delete("Vitor") == arr.size() )  
+       if( arr.delete("Luiz") == arr.size() )
       System.out.println("Não há esse nome no vetor.");
+      
 
        arr.display(); // mostra os itens da estrutura de novo
                        
