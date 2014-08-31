@@ -131,7 +131,6 @@ class AppOrdenada
       if( arr.find(searchKey) == arr.size() )
          System.out.println("Não há no vetor nome que começa com a letra " + searchKey);
      
-
       arr.display();                 // mostra os itens da estrutura
 
       if( arr.delete("ADS") == arr.size() )  // deleta 3 itens
