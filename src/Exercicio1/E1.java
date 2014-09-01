@@ -35,9 +35,13 @@ import java.util.Scanner;
       for(j=0; j<nElems; j++)        // varre o vetor 
          if(value.equals(n[j])){
             resultado = "Nome(s) apagado(s) com sucesso!";
-            for(int k=j; k<nElems; k++){ // move os mais altos para "frente"
-            n[k] = n[k+1];
-            nElems--; // decrementa o contador de elementos          
+            if (j==nElems-1){ //verifica se esse elemento não é o último do array
+                nElems--; //caso seja, apenas descondiera o último elemento, não traz os mais altos para "frente"
+            }
+            else{
+                for(int k=j; k<nElems; k++){ // move os mais altos para "frente"
+                n[k] = n[k+1];
+                nElems--;} // decrementa o contador de elementos          
             }
          }
       return(resultado);

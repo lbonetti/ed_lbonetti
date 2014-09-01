@@ -77,9 +77,14 @@ class VetorOrdenado
          {
          curIn = (lowerBound + upperBound) / 2;
          if(a[curIn].equals(value)){ //ao encontrar o nome digitado faça:
+             if (curIn==nElems-1){ //verifica se esse elemento não é o último do array
+                 nElems--; //caso seja, apenas descondiera o último elemento, não traz os mais altos para "frente"
+             }
+             else{
              for(int k=curIn; k<nElems; k++) // move os elementos uma posição pra tras
                  a[k] = a[k+1];
-             nElems--; // decrementa o tamanho
+             nElems--;  // decrementa o tamanho
+             }
              return curIn;   
          }
          else if(lowerBound > upperBound)
