@@ -47,8 +47,19 @@ class EstruturaDadosOb
       while(true)
          {
          curIn = (lowerBound + upperBound ) / 2; //define o "universo" da busca
-         if(a[curIn].getNome().equals(searchName)){ //compara se o que tem na posição atual do vetor com o parâmetro
-            a[curIn].displayPessoa(); //caso encontre, chama o método display da classe Pessoa
+         if(a[curIn].getNome().charAt(0)==searchName.charAt(0)){ //verifica se o nome nesta posição começa com a letra informada pelo usuário
+             for (int i =curIn; a[i].getNome().charAt(0)==searchName.charAt(0);i++){ //verifica a posição atual e as sucessoras enquanto começar com a mesma letra
+                 a[i].displayPessoa(); //chama o método displayPessoa para exibir as informações da pessoa encontrada
+                 if (i+1==nElems){ //verifica se está na útlima posição do array
+                     break;} //caso esteja, sai da repetição, para evitar erro de Array out of Bounds (fora de alcançe)
+                 }
+             if (curIn!=0){ //verifica se todas as posições já foram varridas, pois se curIn for 0 ao decrementar 1 neste for vai dar erro
+                for (int i =curIn-1; a[i].getNome().charAt(0)==searchName.charAt(0);i--){ //verifica a posição anterior e as antecessoras enquanto começar com a mesma letra
+                    a[i].displayPessoa(); //chama o método displayPessoa para exibir as informações da pessoa encontrada
+                    if (i==0){ //verifica se está na primeira posição do array 
+                        break;}//caso esteja, sai da repetição, para evitar erro de Array out of Bounds (fora de alcançe)
+                }
+            }
             return true;
          }  
          else if(lowerBound > upperBound)
@@ -136,9 +147,9 @@ class ClassDataApp
 
       arr.displayA();                // exibe o conteúdo do vetor
 
-      String searchName = "Stimson";  // busca de pessoas
+      String searchName = "A";  // busca de pessoas
       if(arr.find(searchName) == false) //chama o método find
-         System.out.print("Pessoa não encontrada."); //caso nao encontre, retorna este erro
+         System.out.println("Não há nomes que iniciam com essa letra."); //caso nao encontre, retorna este erro
 
 
       System.out.println("Deletenado Smith, Yee, and Creswell"); // deletando pessoas

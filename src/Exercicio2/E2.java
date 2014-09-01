@@ -32,17 +32,19 @@ class VetorOrdenado
       while(true)
          {
          curIn = (lowerBound + upperBound ) / 2;
-         if(a[curIn].charAt(0)==searchKey.charAt(0)){
-             for (int i =curIn; a[i].charAt(0)==searchKey.charAt(0);i++){
-                 System.out.println("O nome " + a[i] + " começa com " + searchKey.charAt(0));
+         if(a[curIn].charAt(0)==searchKey.charAt(0)){ //verifica se o nome nesta posição começa com a letra informada pelo usuário
+             for (int i =curIn; a[i].charAt(0)==searchKey.charAt(0);i++){ //verifica a posição atual e as sucessoras enquanto começar com a mesma letra
+                 System.out.println("O nome " + a[i] + " começa com " + searchKey.charAt(0)); //exibe o nome
                  if (i+1==nElems){ //verifica se está na útlima posição do array
                      break;} //caso esteja, sai da repetição, para evitar erro de Array out of Bounds (fora de alcançe)
                  }
-             for (int i =curIn-1; a[i].charAt(0)==searchKey.charAt(0);i--){
-                 System.out.println("O nome " + a[i] + " começa com " + searchKey.charAt(0));
-                if (i-1<0){ //verifica se está na primeira posição do array 
-                    break;} //caso esteja, sai da repetição, para evitar erro de Array out of Bounds (fora de alcançe)
+             if (curIn!=0){ //verifica se todas as posições já foram varridas, pois se curIn for 0 ao decrementar 1 neste for vai dar erro
+                for (int i =curIn-1; a[i].charAt(0)==searchKey.charAt(0);i--){ //verifica a posição anterior e as antecessoras enquanto começar com a mesma letra
+                    System.out.println("O nome " + a[i] + " começa com " + searchKey.charAt(0)); //exibe o nome
+                    if (i==0){ //verifica se está na primeira posição do array 
+                        break;}//caso esteja, sai da repetição, para evitar erro de Array out of Bounds (fora de alcançe)
                 }
+            }
          return curIn;
          }  
          else if(lowerBound > upperBound)
@@ -86,7 +88,7 @@ class VetorOrdenado
              if (curIn==nElems-1){ //verifica se esse elemento não é o último do array
                  nElems--; //caso seja, apenas descondiera o último elemento, não traz os mais altos para "frente"
              }
-             else{
+             else{ //senao
              for(int k=curIn; k<nElems; k++) // move os elementos uma posição pra tras
                  a[k] = a[k+1];
              nElems--;  // decrementa o tamanho
