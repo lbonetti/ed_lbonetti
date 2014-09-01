@@ -85,9 +85,14 @@ class EstruturaDadosOb
          {
          curIn = (lowerBound + upperBound) / 2;
          if(a[curIn].getNome().equals(searchName)){
+             if (curIn==nElems-1){ //verifica se esse elemento não é o último do array
+                 nElems--; //caso seja, apenas descondiera o último elemento, não traz os mais altos para "frente"
+             }
+             else{
              for(int k=curIn; k<nElems; k++) // move os elementos uma posição pra tras
                  a[k] = a[k+1];
-             nElems--; // decrementa o tamanho
+             nElems--;  // decrementa o tamanho
+             }
              return curIn;   
          }
          else if(lowerBound > upperBound)
@@ -132,15 +137,15 @@ class ClassDataApp
       arr.displayA();                // exibe o conteúdo do vetor
 
       String searchName = "Stimson";  // busca de pessoas
-      if(arr.find(searchName) == false)
-         System.out.print("Pessoa não encontrada.");
+      if(arr.find(searchName) == false) //chama o método find
+         System.out.print("Pessoa não encontrada."); //caso nao encontre, retorna este erro
 
 
       System.out.println("Deletenado Smith, Yee, and Creswell"); // deletando pessoas
-      arr.delete("Smith");        
+      arr.delete("Smith"); //chama o método delete
       arr.delete("Yee");
       arr.delete("Creswell");
 
-      arr.displayA();                // comentario aqui
+      arr.displayA();                // exibe o conteúdo do vetor
       }  // end main()
    }  // end class ClassDataApp

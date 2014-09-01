@@ -34,9 +34,15 @@ class VetorOrdenado
          curIn = (lowerBound + upperBound ) / 2;
          if(a[curIn].charAt(0)==searchKey.charAt(0)){
              for (int i =curIn; a[i].charAt(0)==searchKey.charAt(0);i++){
-                 System.out.println("O nome " + a[i] + " começa com " + searchKey.charAt(0));}
+                 System.out.println("O nome " + a[i] + " começa com " + searchKey.charAt(0));
+                 if (i+1==nElems){ //verifica se está na útlima posição do array
+                     break;} //caso esteja, sai da repetição, para evitar erro de Array out of Bounds (fora de alcançe)
+                 }
              for (int i =curIn-1; a[i].charAt(0)==searchKey.charAt(0);i--){
-                 System.out.println("O nome " + a[i] + " começa com " + searchKey.charAt(0));}
+                 System.out.println("O nome " + a[i] + " começa com " + searchKey.charAt(0));
+                if (i-1<0){ //verifica se está na primeira posição do array 
+                    break;} //caso esteja, sai da repetição, para evitar erro de Array out of Bounds (fora de alcançe)
+                }
          return curIn;
          }  
          else if(lowerBound > upperBound)
@@ -128,11 +134,11 @@ class AppOrdenada
       arr.insert("Luiz");
       arr.insert("Mel");
       arr.insert("Vitor");
-      arr.insert("IFSP");
+      arr.insert("Adilson");
       arr.insert("ADS");
       arr.insert("Tiao Carrero");
 
-      String searchKey = "L";            // buscar pelos nomes que começam com a letra L no vetor
+      String searchKey = "A";            // buscar pelos nomes que começam com a letra L no vetor
       if( arr.find(searchKey) == arr.size() )
          System.out.println("Não há no vetor nome que começa com a letra " + searchKey);
      
