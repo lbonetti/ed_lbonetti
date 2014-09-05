@@ -1,44 +1,21 @@
-package Desafio2;
+package er1;
 // classDataArray.java
 // data items as class objects
 // to run this program: C>java ClassDataApp
 ////////////////////////////////////////////////////////////////
-class Pessoa
-   { 
-   private String nome;
-   private String profissao;
-   private int idade;
-//--------------------------------------------------------------
-   public Pessoa(String last, String first, int a)
-      {                               // constutor da classe pessoa
-      nome = last;
-      profissao = first;
-      idade = a;
-      }
-//--------------------------------------------------------------
-   public void displayPessoa()
-      {
-      System.out.print("   Nome: " + nome);
-      System.out.print(", Profissao: " + profissao);
-      System.out.println(", Idade: " + idade);
-      }
-//--------------------------------------------------------------
-   public String getNome()           // método que retorna o sobrenome
-      { return nome; }
-   }  // end class Person
-////////////////////////////////////////////////////////////////
-class EstruturaDadosOb
+
+public class Estrutura
    {
-   private Pessoa[] a;               // criando um atributo privado do tipo Pessoa
+   private Jogador[] a;               // criando um atributo privado do tipo Pessoa
    private int nElems;               /// criando um atributo privato para controlar a quantidade de elementos
 
-   public EstruturaDadosOb(int max)    // construtor da classe EstruturaDadosOb
+   public Estrutura(int max)    // construtor da classe EstruturaDadosOb
       {
-      a = new Pessoa[max];               // instanciando o objeto do tipo Pessoa
+      a = new Jogador[max];               // instanciando o objeto do tipo Pessoa
       nElems = 0;                        // atribuindo 0 a quantidade de elementos
       }
 //--------------------------------------------------------------
-      public boolean find(String searchName)
+      public boolean find(int searchAge)
       {                                 // método para encontrar uma pessoa no array utilizando busca binária
       int lowerBound = 0;               //limite inferior
       int upperBound = nElems-1;        //limite superior (quantidade de elementos no vetor -1)
@@ -47,7 +24,7 @@ class EstruturaDadosOb
       while(true)
          {
          curIn = (lowerBound + upperBound ) / 2; //define o "universo" da busca
-         if(a[curIn].getNome().charAt(0)==searchName.charAt(0)){ //verifica se o nome nesta posição começa com a letra informada pelo usuário
+         if(a[curIn].getAge().charAt(0)==searchName.charAt(0)){ //verifica se o nome nesta posição começa com a letra informada pelo usuário
              for (int i =curIn; a[i].getNome().charAt(0)==searchName.charAt(0);i++){ //verifica a posição atual e as sucessoras enquanto começar com a mesma letra
                  a[i].displayPessoa(); //chama o método displayPessoa para exibir as informações da pessoa encontrada
                  if (i+1==nElems){ //verifica se está na útlima posição do array
