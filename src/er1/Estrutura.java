@@ -54,7 +54,7 @@ public class Estrutura
       }  // fim do método de pesquisa binária()
 //-------------------------------------------------------------- 
 //--------------------------------------------------------------
-      public int findName(String searchName) // método para encontrar um jogador no array pelo nome utilizando busca linear
+      public void findName(String searchName) // método para encontrar um jogador no array pelo nome utilizando busca linear
       {
           for(int i=0; i<nElems;i++){
             if(a[i].getName().equals(searchName)){ //verifica se o nome nesta posição começa com a letra informada pelo usuário
@@ -68,7 +68,7 @@ public class Estrutura
       }
       // fim do método de pesquisa linear ()
 //--------------------------------------------------------------
-      public void insert(String nome, float altura, int idade)    // método de inserção ordenada!
+      public void insert(String nome, double altura, int idade)    // método de inserção ordenada!
       {
       int j;
       for(j=0; j<nElems; j++)        // localiza onde esse elemento se encaixa
@@ -115,42 +115,8 @@ public class Estrutura
    public void displayA()            // comentario aqui
       {
       for(int j=0; j<nElems; j++)       // comentario aqui
-         a[j].displayPessoa();// comentario aqui
+         a[j].displayJogador();// comentario aqui
       }
 //--------------------------------------------------------------
-   }  // end class ClassDataArray
+   }  // end class Estrutura
 ////////////////////////////////////////////////////////////////
-class ClassDataApp
-   {
-   public static void main(String[] args)
-      {
-      int maxSize = 100;             // comentario aqui
-      EstruturaDadosOb arr;            // comentario aqui
-      arr = new EstruturaDadosOb(maxSize);  // comentario aqui
-                                     // comentario aqui
-      arr.insert("Evans", "Professora", 24);
-      arr.insert("Smith", "Médica", 37);
-      arr.insert("Yee", "Programador", 43);
-      arr.insert("Adams", "DBA", 63);
-      arr.insert("Hashimoto", "Matemático", 21);
-      arr.insert("Stimson", "Astronomo", 29);
-      arr.insert("Velasquez", "Pescador", 72);
-      arr.insert("Lamarque", "Engenheiro", 54);
-      arr.insert("Vang", "Estudante", 22);
-      arr.insert("Creswell", "Politica", 18);
-
-      arr.displayA();                // exibe o conteúdo do vetor
-
-      String searchName = "A";  // busca de pessoas
-      if(arr.find(searchName) == false) //chama o método find
-         System.out.println("Não há nomes que iniciam com essa letra."); //caso nao encontre, retorna este erro
-
-
-      System.out.println("Deletenado Smith, Yee, and Creswell"); // deletando pessoas
-      arr.delete("Smith"); //chama o método delete
-      arr.delete("Yee");
-      arr.delete("Creswell");
-
-      arr.displayA();                // exibe o conteúdo do vetor
-      }  // end main()
-   }  // end class ClassDataApp

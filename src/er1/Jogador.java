@@ -12,10 +12,10 @@ package er1;
  */
 public class Jogador {
    private String nome;
-   private float altura;
+   private double altura;
    private int idade;
 //--------------------------------------------------------------
-   public Jogador(String nome, float altura, int idade)
+   public Jogador(String nome, double altura, int idade)
       {                               // constutor da classe pessoa
       this.nome = nome;
       this.altura = altura;
