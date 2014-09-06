@@ -15,8 +15,8 @@ public class Estrutura
       nElems = 0;                        // atribuindo 0 a quantidade de elementos
       }
 //--------------------------------------------------------------
-      public boolean find(int searchAge)
-      {                                 // método para encontrar uma pessoa no array utilizando busca binária
+      public boolean findAge(int searchAge)
+      {                                 // método para encontrar um jogador no array pela idade utilizando busca binária
       int lowerBound = 0;               //limite inferior
       int upperBound = nElems-1;        //limite superior (quantidade de elementos no vetor -1)
       int curIn;                        //posição atual de busca
@@ -24,15 +24,15 @@ public class Estrutura
       while(true)
          {
          curIn = (lowerBound + upperBound ) / 2; //define o "universo" da busca
-         if(a[curIn].getAge().charAt(0)==searchName.charAt(0)){ //verifica se o nome nesta posição começa com a letra informada pelo usuário
-             for (int i =curIn; a[i].getNome().charAt(0)==searchName.charAt(0);i++){ //verifica a posição atual e as sucessoras enquanto começar com a mesma letra
-                 a[i].displayPessoa(); //chama o método displayPessoa para exibir as informações da pessoa encontrada
+         if(a[curIn].getAge()==searchAge){ //verifica se o nome nesta posição começa com a letra informada pelo usuário
+             for (int i =curIn; a[i].getAge()==searchAge;i++){ //verifica a posição atual e as sucessoras enquanto começar com a mesma letra
+                 a[i].displayJogador(); //chama o método displayJogador para exibir as informações da pessoa encontrada
                  if (i+1==nElems){ //verifica se está na útlima posição do array
                      break;} //caso esteja, sai da repetição, para evitar erro de Array out of Bounds (fora de alcançe)
                  }
              if (curIn!=0){ //verifica se todas as posições já foram varridas, pois se curIn for 0 ao decrementar 1 neste for vai dar erro
-                for (int i =curIn-1; a[i].getNome().charAt(0)==searchName.charAt(0);i--){ //verifica a posição anterior e as antecessoras enquanto começar com a mesma letra
-                    a[i].displayPessoa(); //chama o método displayPessoa para exibir as informações da pessoa encontrada
+                for (int i =curIn-1; a[i].getAge()==searchAge;i--){ //verifica a posição anterior e as antecessoras enquanto começar com a mesma letra
+                    a[i].displayJogador(); //chama o método displayPessoa para exibir as informações da pessoa encontrada
                     if (i==0){ //verifica se está na primeira posição do array 
                         break;}//caso esteja, sai da repetição, para evitar erro de Array out of Bounds (fora de alcançe)
                 }
@@ -43,17 +43,80 @@ public class Estrutura
             return false;             // não pude encontra-lo
          else                          // divide o range
             {
-            if(a[curIn].getNome().compareTo(searchName) < 0)
+            if(a[curIn].getAge() < searchAge)
                lowerBound = curIn + 1; // esta na metade de cima
             else
                upperBound = curIn - 1; // esta na metade de baixo
             }  // fim do else de divisão de range
          }  // fim do while
       }  // fim do método de pesquisa binária()
-//--------------------------------------------------------------                                    // put person into array
-      public void insert(String nome, String profissao, int idade)    // método de inserção ordenada!
+//-------------------------------------------------------------- 
+      //--------------------------------------------------------------
+      public boolean findName(String searchName)
+      {                                 // método para encontrar um jogador no array pelo nome utilizando busca binária
+      int lowerBound = 0;               //limite inferior
+      int upperBound = nElems-1;        //limite superior (quantidade de elementos no vetor -1)
+      int curIn;                        //posição atual de busca
+
+      while(true)
+         {
+         curIn = (lowerBound + upperBound ) / 2; //define o "universo" da busca
+         if(a[curIn].getName().equals(searchName)){ //verifica se o nome nesta posição começa com a letra informada pelo usuário
+             for (int i =curIn;a[i].getName().equals(searchName);i++){ //verifica a posição atual e as sucessoras enquanto começar com a mesma letra
+                 a[i].displayJogador(); //chama o método displayJogador para exibir as informações da pessoa encontrada
+                 if (i+1==nElems){ //verifica se está na útlima posição do array
+                     break;} //caso esteja, sai da repetição, para evitar erro de Array out of Bounds (fora de alcançe)
+                 }
+             if (curIn!=0){ //verifica se todas as posições já foram varridas, pois se curIn for 0 ao decrementar 1 neste for vai dar erro
+                for (int i =curIn-1; a[i].getName().equals(searchName);i--){ //verifica a posição anterior e as antecessoras enquanto começar com a mesma letra
+                    a[i].displayJogador(); //chama o método displayPessoa para exibir as informações da pessoa encontrada
+                    if (i==0){ //verifica se está na primeira posição do array 
+                        break;}//caso esteja, sai da repetição, para evitar erro de Array out of Bounds (fora de alcançe)
+                }
+            }
+            return true;
+         }  
+         else if(lowerBound > upperBound)
+            return false;             // não pude encontra-lo
+         else                          // divide o range
+            {
+            if(a[curIn].getName().compareTo(searchName) < 0)
+               lowerBound = curIn + 1; // esta na metade de cima
+            else
+               upperBound = curIn - 1; // esta na metade de baixo
+            }  // fim do else de divisão de range
+         }  // fim do while
+      }  // fim do método de pesquisa binária()
+//--------------------------------------------------------------
+      public void insert(String nome, float altura, int idade)    // método de inserção ordenada!
       {
-      int j;
+      int lowerBound = 0;               //limite inferior
+      int upperBound = nElems-1;        //limite superior (quantidade de elementos no vetor -1)
+      int curIn;                        //posição atual de busca
+
+      while(true)
+         {
+         curIn = (lowerBound + upperBound ) / 2; //define o "universo" da busca
+         if(a[curIn].getAge()==idade){ //verifica se o nome nesta posição começa com a letra informada pelo usuário
+            for(int k=nElems; k>curIn; k--)    // move os elementos maiores uma posição p/ frente
+            a[k] = a[k-1];
+            a[curIn] = new Jogador(nome, altura, idade);      // insere o elemento na posição necessária
+            nElems++;
+            break;
+         }  
+         else if(lowerBound > upperBound){
+            a[0] = new Jogador(nome, altura, idade);
+            break;}// insere na primeira posição do array
+         else                          // divide o range
+            {
+            if(a[curIn].getAge() < idade)
+               lowerBound = curIn + 1; // esta na metade de cima
+            else
+               upperBound = curIn - 1; // esta na metade de baixo
+            }  // fim do else de divisão de range
+         }  // fim do while
+      
+          int j;
       for(j=0; j<nElems; j++)        // localiza onde esse elemento se encaixa
          if(a[j].getNome().compareTo(nome) > 0)    // OBS: Usando aqui busca linear!!! Poderia ser binária!
             break;

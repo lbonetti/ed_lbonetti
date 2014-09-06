@@ -31,4 +31,8 @@ public class Jogador {
 //--------------------------------------------------------------
    public int getAge()           // método que retorna a idade
       { return idade; }
+   
+   //--------------------------------------------------------------
+   public String getName()           // método que retorna a idade
+      { return nome; }
 }   //end class Jogador
