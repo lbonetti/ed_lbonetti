@@ -2,7 +2,6 @@ package er1;
 // classDataArray.java
 // data items as class objects
 
-import Desafio2.Pessoa;
 
 // to run this program: C>java ClassDataApp
 ////////////////////////////////////////////////////////////////
@@ -55,19 +54,19 @@ public class Estrutura
       }  // fim do método de pesquisa binária()
 //-------------------------------------------------------------- 
 //--------------------------------------------------------------
-      public boolean findName(String searchName) // método para encontrar um jogador no array pelo nome utilizando busca linear
+      public int findName(String searchName) // método para encontrar um jogador no array pelo nome utilizando busca linear
       {
-          for(int i=0; i=nElems-1;i++){
+          for(int i=0; i<nElems;i++){
             if(a[i].getName().equals(searchName)){ //verifica se o nome nesta posição começa com a letra informada pelo usuário
-             for (int j =i;a[j].getName().equals(searchName);i++){ //verifica a posição atual e as sucessoras enquanto começar com a mesma letra
-                 a[i].displayJogador(); //chama o método displayJogador para exibir as informações da pessoa encontrada
-                 if (i+1==nElems){ //verifica se está na útlima posição do array
-                     break;} //caso esteja, sai da repetição, para evitar erro de Array out of Bounds (fora de alcançe)
-                 }
-         }  
-      } 
-      
-      }// fim do método de pesquisa linear ()
+                for (int j=i;a[j].getName().equals(searchName);i++){ //verifica a posição atual e as sucessoras enquanto começar com a mesma letra
+                    a[i].displayJogador(); //chama o método displayJogador para exibir as informações da pessoa encontrada
+            if (i+1==nElems){ //verifica se está na útlima posição do array
+                break;} //caso esteja, sai da repetição, para evitar erro de Array out of Bounds (fora de alcançe)
+                }
+            }
+          }
+      }
+      // fim do método de pesquisa linear ()
 //--------------------------------------------------------------
       public void insert(String nome, float altura, int idade)    // método de inserção ordenada!
       {
@@ -81,7 +80,7 @@ public class Estrutura
       nElems++;                      // incrementa a variavel de controle de tamanho
       }  // finaliza o método de inserção
 //--------------------------------------------------------------
-      public int delete(String searchName)
+      public int delete(int searchAge)
       {
       int lowerBound = 0;
       int upperBound = nElems-1;
@@ -90,7 +89,7 @@ public class Estrutura
       while(true)
          {
          curIn = (lowerBound + upperBound) / 2;
-         if(a[curIn].getNome().equals(searchName)){
+         if(a[curIn].getAge()==searchAge){
              if (curIn==nElems-1){ //verifica se esse elemento não é o último do array
                  nElems--; //caso seja, apenas descondiera o último elemento, não traz os mais altos para "frente"
              }
@@ -105,7 +104,7 @@ public class Estrutura
             return nElems;             // não pude encontra-lo
          else                          // divide o range
             {
-            if(a[curIn].getNome().compareTo(searchName) < 0)
+            if(a[curIn].getAge() < searchAge)
                lowerBound = curIn + 1; // esta na metade de cima
             else
                upperBound = curIn - 1; // esta na metade de baixo
