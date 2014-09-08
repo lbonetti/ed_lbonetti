@@ -27,22 +27,39 @@ public class Usuaria {
       arr.insert("Adams", 1.68, 54);
       arr.insert("Vang", 1.65, 22);
       arr.insert("Creswell", 1.64, 18);
-
-      arr.displayA();                // exibe o conteúdo do vetor
-
-      String searchName = "Adams";  // busca de jogadores por nome
-      System.out.println("Os nomes encontrados foram:");
-      arr.findName(searchName);
       
-      int searchAge = 21;  // busca de jogadores por idade
-      if (arr.findAge(searchAge)==false)
-              System.out.println("Não há jogadores com essa idade.");
+      System.out.println("Exibindo todo o conteúdo do vetor"); // exibe o conteúdo do vetor
+      arr.displayA(); //metodo para exibir          
 
+      System.out.println("\nBuscando jogadores pelo nome. Ex: Adams"); // busca de jogadores por nome
+      String searchName = "Adams";  
+      if(arr.findName(searchName)==false) //metodo de busca pelo nome
+      System.out.println("Não há jogadores com esse nome.");
+      
+      System.out.println("\nBuscando jogadores pelo nome. Ex: Lucas"); // busca de jogadores por nome
+      searchName = "Lucas";  //esse nome não existe no vetor
+      if(arr.findName(searchName)==false) //metodo de busca pelo nome
+      System.out.println("Não há jogadores com esse nome.");
 
-      System.out.println("Deletenado os jogadores com o idade 21"); // deletando jogadores
-      arr.delete(searchAge); //chama o método delete
+      
+      System.out.println("\nBuscando jogadores pela idade. Ex: 21 anos"); // busca de jogadores por idade
+      int searchAge = 21;  
+      if (arr.findAge(searchAge)==false) //metodo de busca pela idade
+      System.out.println("Não há jogadores com essa idade.");
 
-      arr.displayA();                // exibe o conteúdo do vetor
+      System.out.println("\nBuscando jogadores pela idade. Ex: 26 anos"); // busca de jogadores por idade
+      searchAge = 26;  //essa idade não existe no vetor
+      if (arr.findAge(searchAge)==false) //metodo de busca pela idade
+      System.out.println("Não há jogadores com essa idade.");
+
+        
+      System.out.println("\nDeletando um jogadores pela idade. Ex: 43 anos"); // busca de jogadores por idade  
+      searchAge = 43;
+      if (arr.delete(searchAge)==false) //metodo de busca pela idade
+      System.out.println("Não há jogadores com essa idade.");
+
+      System.out.println("\nExibindo todo o conteúdo do vetor"); // exibe o conteúdo do vetor
+      arr.displayA(); //metodo para exibir 
       }  // end main()
     
 }

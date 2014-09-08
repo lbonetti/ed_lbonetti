@@ -8,12 +8,12 @@ package er1;
 
 public class Estrutura
    {
-   private Jogador[] a;               // criando um atributo privado do tipo Pessoa
+   private Jogador[] a;               // criando um atributo privado do tipo Jogador
    private int nElems;               /// criando um atributo privato para controlar a quantidade de elementos
 
-   public Estrutura(int max)    // construtor da classe EstruturaDadosOb
+   public Estrutura(int max)    // construtor da classe Estrutura
       {
-      a = new Jogador[max];               // instanciando o objeto do tipo Pessoa
+      a = new Jogador[max];               // instanciando o objeto do tipo Jogador
       nElems = 0;                        // atribuindo 0 a quantidade de elementos
       }
 //--------------------------------------------------------------
@@ -54,17 +54,16 @@ public class Estrutura
       }  // fim do método de pesquisa binária()
 //-------------------------------------------------------------- 
 //--------------------------------------------------------------
-      public void findName(String searchName) // método para encontrar um jogador no array pelo nome utilizando busca linear
+      public boolean findName(String searchName) // método para encontrar um jogador no array pelo nome utilizando busca linear
       {
+          boolean encontrou=false;
           for(int i=0; i<nElems;i++){
-            if(a[i].getName().equals(searchName)){ //verifica se o nome nesta posição começa com a letra informada pelo usuário
-                for (int j=i;a[j].getName().equals(searchName);i++){ //verifica a posição atual e as sucessoras enquanto começar com a mesma letra
+            if(a[i].getName().equals(searchName)){ //verifica se o nome nesta posição é igual ao parâmetro passado
                     a[i].displayJogador(); //chama o método displayJogador para exibir as informações da pessoa encontrada
-            if (i+1==nElems){ //verifica se está na útlima posição do array
-                break;} //caso esteja, sai da repetição, para evitar erro de Array out of Bounds (fora de alcançe)
-                }
+                    encontrou=true;
             }
           }
+          return encontrou;
       }
       // fim do método de pesquisa linear ()
 //--------------------------------------------------------------
@@ -80,9 +79,9 @@ public class Estrutura
       nElems++;                      // incrementa a variavel de controle de tamanho
       }  // finaliza o método de inserção
 //--------------------------------------------------------------
-      public int delete(int searchAge)
-      {
-      int lowerBound = 0;
+      public boolean delete(int searchAge) //esse metodo de exclusão não era necessário, porém implementei. 
+      {                                    //contem uma falha, por exempelo, se houver 2 ou mais jogadores com a mesma idade,
+      int lowerBound = 0;                  //ele deleta apenas o primeiro que for encontrado
       int upperBound = nElems-1;
       int curIn;
 
@@ -98,10 +97,10 @@ public class Estrutura
                  a[k] = a[k+1];
              nElems--;  // decrementa o tamanho
              }
-             return curIn;   
+             return true;   
          }
          else if(lowerBound > upperBound)
-            return nElems;             // não pude encontra-lo
+            return false;             // não pude encontra-lo
          else                          // divide o range
             {
             if(a[curIn].getAge() < searchAge)
@@ -112,10 +111,10 @@ public class Estrutura
          }  // fim do while
       }  // fim do método de remoção utilizando busca binária()
 //--------------------------------------------------------------
-   public void displayA()            // comentario aqui
+   public void displayA()            // método que exibe todo o conteúdo do array
       {
-      for(int j=0; j<nElems; j++)       // comentario aqui
-         a[j].displayJogador();// comentario aqui
+      for(int j=0; j<nElems; j++)      
+         a[j].displayJogador();
       }
 //--------------------------------------------------------------
    }  // end class Estrutura

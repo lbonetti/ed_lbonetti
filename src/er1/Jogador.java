@@ -16,13 +16,13 @@ public class Jogador {
    private int idade;
 //--------------------------------------------------------------
    public Jogador(String nome, double altura, int idade)
-      {                               // constutor da classe pessoa
+      {                               // constutor da classe jogador
       this.nome = nome;
       this.altura = altura;
       this.idade = idade;
       }
 //--------------------------------------------------------------
-   public void displayJogador()
+   public void displayJogador() //método que exibe as informações do jogador
       {
       System.out.print("   Nome: " + nome);
       System.out.print(", Altura: " + altura);
@@ -33,6 +33,6 @@ public class Jogador {
       { return idade; }
    
    //--------------------------------------------------------------
-   public String getName()           // método que retorna a idade
+   public String getName()           // método que retorna o nome
       { return nome; }
 }   //end class Jogador
