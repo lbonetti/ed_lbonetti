@@ -27,14 +27,16 @@ public class Usuaria { //A descrição do sistema estão nas linhas de 1 a 10
           System.out.println("Querido José, bem vindo ao programa da sua transportadora.");
           System.out.println("Quantas mercadorias o senhor vai carregar agora?");
           int qntd = scan.nextInt();
+          scan.nextLine(); //limpa o buffer que fica na variável scan
           
-          Logistica lgt = new Logistica (qntd);
-          for (int i = 0; i<qntd;i++){
-              System.out.println("Informe o destino da mercadoria " + i+1);
-              String str = scan.nextLine();
-              lgt.insert(str);
+          Logistica lgt = new Logistica (qntd); //instancia a classe logistica
+          
+          for (int i = 1; i<=qntd;i++){ //laco para informar as rotas
+              System.out.println("Informe o destino da mercadoria " + i);
+              String str = scan.nextLine(); 
+              lgt.insert(str); //insere as rotas na pilha
           }
           
-          lgt.definirRota();
+          System.out.println(lgt.definirRota()); //chamada do método que faz a verificação da melhor rota
       }
 }
