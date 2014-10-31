@@ -38,9 +38,33 @@ class ListaDeNos
       return temp;                // retornarmos para classe usuária o item removido
       }
 // -------------------------------------------------------------
+   public String delete(String nome)      // buscamos e removemos o nó que tiver o nome passado por parâmetro
+      {                           // assumimos que a lista não esta vazia!
+      String result = "\nNó não encontrado";
+      No current = first; //rerefencia para o nó corrente
+      No previous = first; //referencia para o anterior
+      
+      while(current.displayNome() != nome){ //buscamos o nó. executa a repetição enquanto não encontrar o nó
+          if(current.getNext() == null)
+              return result; //não encontrou. retorna result e sai do método
+          else{
+              previous = current; //guarda a referencia ao anterior
+              current = current.getNext(); //vai para proximo nó
+          } 
+      } //se encontrou, sai do while
+      
+      if(current == first) //se for o primeiro nó
+          first = first.getNext(); //apenas desconsidera o primeiro nó
+      else
+          previous.setNext(current.getNext()); //senão, seta o next do nó a ser apagado como next do nó anterior
+      
+      result="\nNó apagado com sucesso";
+      return result;
+   }
+// -------------------------------------------------------------
    public void displayList()
       {
-      System.out.print("Lista (primeiro-->último): ");
+      System.out.print("\nLista (primeiro-->último): ");
       No current = first;       // começamos pelo começo da lista
       while(current != null)      // enquanto não chegarmos no item null ...
          {
@@ -52,7 +76,7 @@ class ListaDeNos
 // -------------------------------------------------------------
       public boolean search(String nome) //método que busca o nó com o nome passado por parâmetro
       {
-          boolean status=false;
+      boolean status=false;
       No current = first;       // começamos pelo começo da lista
       while(current != null)      // enquanto não chegarmos no item null ...
          {
