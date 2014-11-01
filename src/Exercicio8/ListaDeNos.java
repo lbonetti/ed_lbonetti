@@ -29,8 +29,24 @@ class ListaDeNos
    public void insertOrdenado(String nome, String pessoaquerida, int idade)  // insere o primeiro nó
       {                           
       No newNo = new No(nome, pessoaquerida, idade);
-      newNo.setNext(first);       // colocamos o antigo "primeiro nó" na referência do que esta sendo inserido
-      first = newNo;            // e aí colocamos o que esta sendo inserido como o primeiro
+      if(isEmpty()){
+        newNo.setNext(first);       // colocamos o antigo "primeiro nó" na referência do que esta sendo inserido
+        first = newNo;}// e aí colocamos o que esta sendo inserido como o primeiro
+      else{
+          No current = first;
+          No previous = first;
+          
+          while(newNo.displayIdade()<current.displayIdade()){
+              if(current.getNext()==null)
+                  break;
+              else{
+                  previous=current;
+                  current = current.getNext();
+              }          
+          }
+          previous.setNext(newNo);
+          newNo.setNext(current);
+      }
       }
 // -------------------------------------------------------------
    public No deleteFirst()      // removemos o primeiro nó
