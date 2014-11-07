@@ -6,7 +6,6 @@
 
 package Exercicio8;
 
-import Exercicio7.*;
 
 /**
  *
@@ -41,7 +40,7 @@ class ListaDeNos
         else
             previous.setNext(newNo); //o nó anterior é referenciado ao novo ítem
         
-        newNo.setNext(current.getNext()); //o novo nó tem aponta para seu sucessor
+        newNo.setNext(current);  //o novo nó aponta para seu sucessor
       }
 // -------------------------------------------------------------
    public No deleteFirst()      // removemos o primeiro nó
@@ -87,13 +86,28 @@ class ListaDeNos
       System.out.println("");
       }
 // -------------------------------------------------------------
-      public boolean search(String nome) //método que busca o nó com o nome passado por parâmetro
+      public boolean searchNome(String nome) //método que busca o nó com o nome passado por parâmetro
       {
       boolean status=false;
       No current = first;       // começamos pelo começo da lista
       while(current != null)      // enquanto não chegarmos no item null ...
          {
          if(current.displayNome().equalsIgnoreCase(nome)){ //compara se o nome do nó é igual ao passado por parâmetro
+             System.out.println("\nResultado encontrado: ");
+             current.displayNo();   // caso encontre, exibe o ítem
+             status=true;}
+         current = current.getNext();  // movemos a lista para o proximo
+         }
+      return status;
+      }
+// -------------------------------------------------------------      
+      public boolean searchIdade(int idade) //método que busca o nó com a idade passada por parâmetro
+      {
+      boolean status=false;
+      No current = first;       // começamos pelo começo da lista
+      while(current != null)      // enquanto não chegarmos no item null ...
+         {
+         if(current.displayIdade()==idade){ //compara se a idade do nó é igual ao passado por parâmetro
              System.out.println("\nResultado encontrado: ");
              current.displayNo();   // caso encontre, exibe o ítem
              status=true;}

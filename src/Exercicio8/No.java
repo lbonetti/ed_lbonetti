@@ -6,7 +6,6 @@
 
 package Exercicio8;
 
-import Exercicio7.*;
 
 /**
  *
